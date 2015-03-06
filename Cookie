@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#set -x
+set -e
+
+p=`basename $0`
+
+sed s/EDITME/$p/ Dockerfile > gtp/Dockerfile
+docker build -t gtp gtp
+docker run --rm -t -i --net=host gtp
